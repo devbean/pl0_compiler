@@ -11,3 +11,13 @@
 *.lai
 *.la
 *.a
+
+# IDE related
+Debug/
+ipch/
+*.sdf
+*.sln
+*.suo
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
