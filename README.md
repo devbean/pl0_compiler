@@ -1,4 +1,4 @@
-pl0_compiler
+PL/0 Compiler
 ============
 
-a compiler for PL/0
+This is a compiler for PL/0.
