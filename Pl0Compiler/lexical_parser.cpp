@@ -7,7 +7,7 @@
 
 using namespace std;
 
-lexical_parser::lexical_parser(const sym_table &symt)
+lexical_parser::lexical_parser(sym_table *symt)
 	: _symtabl(symt),
 	  _iid(0),
 	  _inum(0)
@@ -31,7 +31,7 @@ void lexical_parser::parsing(const string &word)
 				sym.push_back(*iter);
 				iter++;
 			}
-			string code = _symtabl.get_keyword(sym);
+			string code = _symtabl->get_keyword(sym);
 			if (code == sym_table::IDENT) { // identity
 				add_id(sym);
 			} else { // keyword
@@ -90,7 +90,7 @@ void lexical_parser::add_id(const string &id)
 
 void lexical_parser::add_keyword(const string &keyword)
 {
-	string code = _symtabl.get_keyword(keyword);
+	string code = _symtabl->get_keyword(keyword);
 #ifdef DEBUG
 	cout << "Read keyowrd: " << keyword << " TYPE: " << code << endl;
 #endif
@@ -108,7 +108,7 @@ void lexical_parser::add_number(int num)
 
 void lexical_parser::add_symbol(const std::string &sym)
 {
-	string code = _symtabl.get_symbol(sym);
+	string code = _symtabl->get_symbol(sym);
 #ifdef DEBUG
 	cout << "Read symbol: " << sym << " TYPE: " << code << endl;
 #endif

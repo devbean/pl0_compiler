@@ -14,7 +14,7 @@ typedef std::list<int>                          number_list;
 class lexical_parser
 {
 public:
-	lexical_parser(const sym_table &symt);
+	lexical_parser(sym_table *symt);
 	~lexical_parser();
 
 	void parsing(const std::string &word);
@@ -24,7 +24,7 @@ private:
 	void add_number(int num);
 	void add_symbol(const std::string &sym);
 
-	sym_table   _symtabl;
+	sym_table*  _symtabl;
 	id_list     _idlist;
 	symbol_list _symlist;
 	number_list _numlist;
