@@ -27,6 +27,6 @@ void compiler::compile()
 	string word;
 	while (sin >> word)
 	{
-		lexparser->parsing(word);
+		lexparser->analysis(word);
 	}
 }

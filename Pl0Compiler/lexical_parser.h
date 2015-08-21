@@ -7,9 +7,9 @@
 
 #include "sym_table.h"
 
-typedef std::list<std::pair<std::string, int> > symbol_list;
-typedef std::list<std::string>                  id_list;
-typedef std::list<int>                          number_list;
+typedef std::list<std::pair<symbol, int> > symbol_list;
+typedef std::list<std::string>             id_list;
+typedef std::list<int>                     number_list;
 
 class lexical_parser
 {
@@ -17,7 +17,7 @@ public:
 	lexical_parser(sym_table *symt);
 	~lexical_parser();
 
-	void parsing(const std::string &word);
+	void analysis(const std::string &word);
 private:
 	void add_id(const std::string &id);
 	void add_keyword(const std::string &keyword);

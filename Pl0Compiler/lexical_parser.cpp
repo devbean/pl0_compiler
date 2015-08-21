@@ -18,7 +18,7 @@ lexical_parser::~lexical_parser()
 {
 }
 
-void lexical_parser::parsing(const string &word)
+void lexical_parser::analysis(const string &word)
 {
 	string::const_iterator iter = word.begin();
 	string::const_iterator end = word.end();
@@ -31,8 +31,8 @@ void lexical_parser::parsing(const string &word)
 				sym.push_back(*iter);
 				iter++;
 			}
-			string code = _symtabl->get_keyword(sym);
-			if (code == sym_table::IDENT) { // identity
+			symbol code = _symtabl->get_keyword(sym);
+			if (code == IDENT) { // identity
 				add_id(sym);
 			} else { // keyword
 				add_keyword(sym);
@@ -84,17 +84,17 @@ void lexical_parser::add_id(const string &id)
 #ifdef DEBUG
 	cout << "Read identity: " << id << " TYPE: IDENT" << endl;
 #endif
-	_symlist.push_back(pair<string, int>(sym_table::IDENT, _iid++));
+	_symlist.push_back(make_pair(IDENT, _iid++));
 	_idlist.push_back(id);
 }
 
 void lexical_parser::add_keyword(const string &keyword)
 {
-	string code = _symtabl->get_keyword(keyword);
+	symbol code = _symtabl->get_keyword(keyword);
 #ifdef DEBUG
 	cout << "Read keyowrd: " << keyword << " TYPE: " << code << endl;
 #endif
-	_symlist.push_back(pair<string, int>(code, -1));
+	_symlist.push_back(make_pair(code, -1));
 }
 
 void lexical_parser::add_number(int num)
@@ -102,17 +102,17 @@ void lexical_parser::add_number(int num)
 #ifdef DEBUG
 	cout << "Read number: " << num << " TYPE: NUMBER" << endl;
 #endif
-	_symlist.push_back(pair<string, int>(sym_table::NUMBER, _inum++));
+	_symlist.push_back(make_pair(NUMBER, _inum++));
 	_numlist.push_back(num);
 }
 
 void lexical_parser::add_symbol(const std::string &sym)
 {
-	string code = _symtabl->get_symbol(sym);
+	symbol code = _symtabl->get_symbol(sym);
 #ifdef DEBUG
 	cout << "Read symbol: " << sym << " TYPE: " << code << endl;
 #endif
-	if (code.size() > 0) {
-		_symlist.push_back(pair<string, int>(code , -1));
+	if (code != ILLEGAL) {
+		_symlist.push_back(make_pair(code , -1));
 	}
 }

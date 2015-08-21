@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef COMPILER
+#define COMPILER
+
 #include <fstream>
 
 class sym_table;
@@ -16,6 +19,8 @@ public:
 private:
 	std::ifstream sin;
 
-	sym_table *symtabl;
+	sym_table      *symtabl;
 	lexical_parser *lexparser;
 };
+
+#endif // COMPILER
